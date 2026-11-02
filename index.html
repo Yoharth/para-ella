@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Para Ti ❤️</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0f172a, #111827, #1e3a8a);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(96, 165, 250, 0.18),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(147, 197, 253, 0.15),
+            transparent 40%
+          );
+
+        animation: breathe 10s ease-in-out infinite;
+      }
+
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+      }
+
+      .stars {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .star {
+        position: absolute;
+        opacity: 0.2;
+        animation: float linear infinite;
+      }
+
+      @keyframes float {
+        from {
+          transform: translateY(100vh);
+        }
+        to {
+          transform: translateY(-150px);
+        }
+      }
+
+      .book {
+        position: relative;
+        z-index: 2;
+        width: 92%;
+        max-width: 900px;
+      }
+
+      .page {
+        display: none;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        backdrop-filter: blur(20px);
+
+        padding: 45px;
+
+        border-radius: 25px;
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        min-height: 600px;
+
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+
+        animation: fade 0.8s ease;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.97);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0px) scale(1);
+        }
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #93c5fd;
+      }
+
+      p {
+        line-height: 1.9;
+        font-size: 1.1rem;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      .photo {
+        width: 100%;
+        max-width: 500px;
+        height: 300px;
+        margin: 25px auto;
+        display: block;
+        border-radius: 20px;
+        object-fit: cover;
+        object-position: center;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .photo-vertical {
+        width: 100%;
+        max-width: 300px;
+        height: 500px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 20px;
+        display: block;
+        margin: 25px auto;
+      }
+
+      .nav {
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        background: #3b82f6;
+
+        color: white;
+
+        border: none;
+
+        padding: 12px 25px;
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        font-size: 1rem;
+
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+        background: #2563eb;
+      }
+
+      .music {
+        position: absolute;
+        top: -60px;
+        right: 0;
+      }
+
+      .finalMessage {
+        display: none;
+
+        margin-top: 30px;
+
+        padding: 25px;
+
+        background: rgba(255, 255, 255, 0.1);
+
+        border-radius: 15px;
+
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .signature {
+        margin-top: 25px;
+
+        text-align: center;
+
+        font-size: 1.2rem;
+
+        color: #93c5fd;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="stars" id="stars"></div>
+
+    <audio id="bgMusic" loop>
+      <source
+        src="music/Alvaro Diaz - PIENSO EN TI (Official Video).mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div class="book">
+      <div class="music">
+        <button id="musicBtn">🎵 Música</button>
+      </div>
+
+      <!-- PORTADA -->
+
+      <div class="page active">
+        <h1>📖 Un Pequeño Libro Para Ti</h1>
+
+        <p class="center">
+          Hoy no quiero regalarte algo material.
+
+          <br /><br />
+
+          Quiero regalarte un pequeño recorrido por todas esas cosas que te
+          hacen especial.
+
+          <br /><br />
+
+          ✨ Feliz Cumpleaños Shariz ✨
+        </p>
+      </div>
+
+      <!-- PAGINA 1 -->
+
+      <div class="page">
+        <h1>🌹 Lo Que Te Define</h1>
+
+        <p>
+          Algunas personas llegan a nuestra vida por casualidad, pero terminan
+          convirtiéndose en algo imposible de olvidar.
+
+          <br /><br />
+
+          Otras por lo que tienen.
+
+          <br /><br />
+
+          Pero tú destacas por quien eres.
+
+          <br /><br />
+
+          Por tu forma de tratar a los demás.
+
+          <br />
+
+          Por tu esencia.
+
+          <br />
+
+          Por esos pequeños detalles que muchas veces pasan desapercibidos, pero
+          que hacen una enorme diferencia.
+        </p>
+      </div>
+
+      <!-- PAGINA 2 -->
+
+      <div class="page">
+        <h1>💙 Lo Que Quizás No Ves</h1>
+
+        <p>
+          A veces las personas más especiales son las que menos conscientes son
+          de ello.
+
+          <br /><br />
+
+          Quizás no siempre veas el impacto que tienes.
+
+          <br />
+
+          Quizás no siempre notes cuánto significas.
+
+          <br /><br />
+
+          Pero la huella que dejas existe.
+
+          <br /><br />
+
+          Y es hermosa.
+        </p>
+      </div>
+
+      <!-- PAGINA 3 -->
+
+      <div class="page">
+        <h1>📸 Recuerdos</h1>
+
+        <img src="img/foto-4.jpg" class="photo" />
+
+        <p>
+          Cada recuerdo contigo tiene algo especial.
+
+          <br /><br />
+
+          No porque sea perfecto.
+
+          <br /><br />
+
+          Sino porque se vuelve imposible de olvidar.
+        </p>
+      </div>
+
+      <!-- PAGINA 4 -->
+
+      <div class="page">
+        <h1>✨ Lo Que Admiro De Ti</h1>
+
+        <img src="img/foto-2.jpg" class="photo" />
+
+        <p>
+          Tu fortaleza.
+
+          <br />
+
+          Tu forma de levantarte.
+
+          <br />
+
+          Tu manera de seguir adelante.
+
+          <br />
+
+          Tus sueños.
+
+          <br />
+
+          Tu manera de ser tú.
+        </p>
+      </div>
+
+      <!-- PAGINA 5 -->
+
+      <div class="page">
+        <h1>📷 Un Lugar En Mi Historia</h1>
+
+        <img src="img/foto-3.jpg" class="photo-vertical" />
+
+        <p>
+          Hay personas que llegan a nuestra vida y se convierten en recuerdos.
+
+          <br /><br />
+
+          Y otras que se convierten en parte de nuestra historia.
+
+          <br /><br />
+
+          Tú perteneces a la segunda categoría.
+        </p>
+      </div>
+
+      <!-- PAGINA FINAL -->
+
+      <div class="page">
+        <h1>❤️ Un Último Mensaje</h1>
+
+        <p class="center">
+          Si tuviera que describirte en una sola palabra...
+
+          <br /><br />
+
+          No podría.
+
+          <br /><br />
+
+          Porque una sola palabra nunca sería suficiente.
+        </p>
+
+        <div class="center" style="margin-top: 25px">
+          <button onclick="mostrarMensaje()">💌 Abrir Mensaje Final</button>
+        </div>
+
+        <div id="finalMessage" class="finalMessage">
+          <p>
+            No sé qué traerá el futuro.
+
+            <br /><br />
+
+            Pero sí sé algo.
+
+            <br /><br />
+
+            Hay personas que dejan una marca especial en nuestra vida.
+
+            <br /><br />
+
+            Personas que hacen que algunos días brillen un poco más.
+
+            <br /><br />
+
+            Personas que simplemente hacen bien al corazón.
+
+            <br /><br />
+
+            Y tú eres una de ellas.
+
+            <br /><br />
+
+            Deseo que este nuevo año venga lleno de felicidad, sueños cumplidos
+            y momentos inolvidables.
+          </p>
+
+          <div class="signature">
+            Con cariño ❤️
+
+            <br />
+
+            Yohart
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button onclick="prevPage()">⬅ Anterior</button>
+
+        <button onclick="nextPage()">Siguiente ➡</button>
+      </div>
+    </div>
+
+    <script>
+      const pages = document.querySelectorAll(".page");
+
+      let current = 0;
+
+      function showPage(index) {
+        pages.forEach((p) => p.classList.remove("active"));
+
+        pages[index].classList.add("active");
+      }
+
+      function nextPage() {
+        if (current < pages.length - 1) {
+          current++;
+
+          showPage(current);
+        }
+      }
+
+      function prevPage() {
+        if (current > 0) {
+          current--;
+
+          showPage(current);
+        }
+      }
+
+      const musicBtn = document.getElementById("musicBtn");
+      const bgMusic = document.getElementById("bgMusic");
+
+      musicBtn.addEventListener("click", () => {
+        if (bgMusic.paused) {
+          bgMusic.play();
+
+          musicBtn.innerHTML = "⏸ Pausar";
+        } else {
+          bgMusic.pause();
+
+          musicBtn.innerHTML = "🎵 Música";
+        }
+      });
+
+      function mostrarMensaje() {
+        const msg = document.getElementById("finalMessage");
+
+        msg.style.display = "block";
+
+        msg.animate(
+          [
+            {
+              opacity: 0,
+              transform: "translateY(30px)",
+            },
+            {
+              opacity: 1,
+              transform: "translateY(0px)",
+            },
+          ],
+          {
+            duration: 1500,
+            fill: "forwards",
+          },
+        );
+      }
+
+      const stars = document.getElementById("stars");
+
+      for (let i = 0; i < 50; i++) {
+        let star = document.createElement("div");
+
+        star.className = "star";
+
+        star.innerHTML = "✦";
+
+        star.style.left = Math.random() * 100 + "vw";
+
+        star.style.fontSize = Math.random() * 18 + 8 + "px";
+
+        star.style.animationDuration = Math.random() * 15 + 10 + "s";
+
+        stars.appendChild(star);
+      }
+    </script>
+  </body>
+</html>
